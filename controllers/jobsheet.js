@@ -41,7 +41,7 @@ exports.submitMany = async (req, res) => {
       const quiz = await Quiz.findOne({
         limit: 1,
         where: {
-          id: jobsheet.quizId[1],
+          id: jobsheet.quizId[i],
         },
         order: [["id", "DESC"]],
       });
