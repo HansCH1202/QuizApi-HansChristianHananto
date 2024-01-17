@@ -1,11 +1,15 @@
 const quizController = require("..//controllers/quiz");
 const router = require("express").Router();
 
-router.post("/", quizController.create);
+const { verifyToken } = require("../middlewares/authJwt");
+
+router.post("/", [verifyToken], quizController.create);
+
 router.get("/", quizController.getAll);
-router.get("/:id", quizController.findOne);
-router.put("/:id", quizController.update);
-router.delete("/:id", quizController.delete);
+router.get("/:id", [verifyToken], quizController.findOne);
+router.put("/:id", [verifyToken], quizController.update);
+router.delete("/:id", [verifyToken], quizController.delete);
+
 router.get("/category/:id", quizController.getCategoryById);
 router.get("/level/:id", quizController.getByLevelId);
 
